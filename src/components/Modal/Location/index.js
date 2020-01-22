@@ -2,11 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {
-    Button,
-    FormControl,
-    InputLabel,
-    MenuItem,
-    Select
+    Button, FormControl, InputLabel, MenuItem, Select
 } from '@material-ui/core';
 import {filter, map, sortBy} from 'lodash';
 
@@ -16,7 +12,7 @@ import useStyles from './styles';
 import {setGeolocationCity} from '../../../actions/geolocation';
 import {hideModal} from '../../../actions/modal';
 
-const Location = ({onClose}) => {
+const Location = ({onSubmit}) => {
     const styles = useStyles();
     const [selectedCountry, setCountry] = useState('');
     const [selectedCity, setCity] = useState('');
@@ -29,19 +25,15 @@ const Location = ({onClose}) => {
     };
     return (
         <div className={styles.paper}>
-            <h2>
-                Location
-            </h2>
-            <p>
-                Please, select your country and city.
-            </p>
+            <h2>Location</h2>
+            <p>Please, select your country and city.</p>
             <FormControl className={styles.formControl}>
                 <InputLabel>
                     Country
                 </InputLabel>
                 <Select value={selectedCountry} onChange={event => handleChangeCountry(event.target.value)}>
                     {map(countries, country => (
-                        <MenuItem value={country.value}>
+                        <MenuItem key={country.value} value={country.value}>
                             {country.name}
                         </MenuItem>
                     ))}
@@ -53,13 +45,18 @@ const Location = ({onClose}) => {
                 </InputLabel>
                 <Select value={selectedCity} onChange={event => setCity(event.target.value)}>
                     {map(filteredCities, city => (
-                        <MenuItem value={city.id}>
+                        <MenuItem key={city.id} value={city.id}>
                             {city.name}
                         </MenuItem>
                     ))}
                 </Select>
             </FormControl>
-            <Button variant="contained" color="primary" onClick={() => onClose(selectedCity)}>
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={() => onSubmit(selectedCity)}
+                disabled={!selectedCountry || !selectedCity}
+            >
                 Send
             </Button>
         </div>
@@ -67,13 +64,13 @@ const Location = ({onClose}) => {
 };
 
 Location.propTypes = {
-    onClose: PropTypes.func.isRequired
+    onSubmit: PropTypes.func.isRequired
 };
 
 export default connect(
     null,
     dispatch => ({
-        onClose: city => {
+        onSubmit: city => {
             dispatch(hideModal());
             dispatch(setGeolocationCity(city));
         }

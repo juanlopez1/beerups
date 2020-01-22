@@ -1,44 +1,34 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {withRouter} from 'react-router-dom';
 import {
     ListItem, ListItemIcon, ListItemText
 } from '@material-ui/core';
 import {
-    Dashboard, ShoppingCart, People, BarChart, Layers
+    Home, CalendarToday
 } from '@material-ui/icons';
 
-const NavPanel = () => (
+const NavPanel = ({history}) => (
     <div className="nav-panel">
-        <ListItem button>
+        <ListItem button onClick={() => history.push('/')}>
             <ListItemIcon>
-                <Dashboard/>
+                <Home/>
             </ListItemIcon>
-            <ListItemText primary="Dashboard"/>
+            <ListItemText primary="Home"/>
         </ListItem>
-        <ListItem button>
+        <ListItem button onClick={() => history.push('calendar')}>
             <ListItemIcon>
-                <ShoppingCart/>
+                <CalendarToday/>
             </ListItemIcon>
-            <ListItemText primary="Orders"/>
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <People/>
-            </ListItemIcon>
-            <ListItemText primary="Customers"/>
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <BarChart/>
-            </ListItemIcon>
-            <ListItemText primary="Reports"/>
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                <Layers/>
-            </ListItemIcon>
-            <ListItemText primary="Integrations"/>
+            <ListItemText primary="Calendar"/>
         </ListItem>
     </div>
 );
 
-export default NavPanel;
+NavPanel.propTypes = {
+    history: PropTypes.shape({
+        push: PropTypes.func
+    }).isRequired
+};
+
+export default withRouter(NavPanel);

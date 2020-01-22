@@ -2,9 +2,7 @@ import React, {Component, PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {
-    Backdrop,
-    Fade,
-    Modal as ModalComponent
+    Backdrop, Fade, Modal as ModalComponent
 } from '@material-ui/core';
 
 import useStyles from './styles';
@@ -20,7 +18,7 @@ const Modal = ({Content, showing}) => {
             className={styles.modal}
         >
             <Fade in={showing}>
-                {Content && <Content/>}
+                <Content/>
             </Fade>
         </ModalComponent>
     );
@@ -32,12 +30,14 @@ Modal.propTypes = {
         PropTypes.instanceOf(Component),
         PropTypes.instanceOf(PureComponent),
         PropTypes.object,
+        PropTypes.node,
         PropTypes.func,
         PropTypes.element,
         PropTypes.arrayOf(PropTypes.oneOfType([
             PropTypes.instanceOf(Component),
             PropTypes.instanceOf(PureComponent),
             PropTypes.object,
+            PropTypes.node,
             PropTypes.func,
             PropTypes.element
         ]))

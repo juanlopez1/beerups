@@ -16,18 +16,27 @@ body {
   header {
     display: flex;
     flex: 2;
+    min-height: 7vh;
   }
 
   main {
     display: flex;
     flex-direction: row;
+    min-height: 93vh;
 
     .nav-panel {
-      flex: 2;
+      display: flex;
+      flex: 15;
+      flex-direction: column;
+      border-right-width: 1px;
+      border-right-style: solid;
+      border-right-color: #ccc;
     }
 
     .routes {
-      flex: 8;
+      display: flex;
+      flex: 85;
+      flex-direction: column;
     }
   }
 }
