@@ -1,6 +1,6 @@
 # BeerUps
 
-A React web-app. This app helps to organize meetups .
+A React web-app. This app helps to organize meetups with beers.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -17,9 +17,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### `npm start`
 
-Launches the test runner in the interactive watch mode.<br>
+Launches Eslint.<br>
 
-### `npm test`
+### `npm run lint`
+
+Launches Jest and Enzyme.<br>
+
+### `npm run test`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
