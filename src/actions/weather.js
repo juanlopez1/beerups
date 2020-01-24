@@ -13,7 +13,9 @@ export const WEATHER_FETCH_BY_CITY_REQUESTED = 'WEATHER_FETCH_BY_CITY_REQUESTED'
 export const WEATHER_FETCH_BY_CITY_FAILED = 'WEATHER_FETCH_BY_CITY_FAILED';
 
 export const requestFetchWeatherByCity = (city, country) => ({
-    type: WEATHER_FETCH_BY_CITY_REQUESTED, city, country
+    type: WEATHER_FETCH_BY_CITY_REQUESTED,
+    city,
+    country
 });
 
 export const notifyFetchWeatherByCityFailed = () => ({
@@ -23,5 +25,6 @@ export const notifyFetchWeatherByCityFailed = () => ({
 export const WEATHER_FETCH_SUCCEEDED = 'WEATHER_FETCH_SUCCEEDED';
 
 export const receivedWeather = weather => ({
-    type: WEATHER_FETCH_SUCCEEDED, weather
+    type: WEATHER_FETCH_SUCCEEDED,
+    weather
 });

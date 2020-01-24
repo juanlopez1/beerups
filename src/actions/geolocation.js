@@ -7,7 +7,8 @@ export const requestGetCoords = () => ({
 });
 
 export const receivedCoords = coords => ({
-    type: GEOLOCATION_GET_COORDS_SUCCEEDED, coords
+    type: GEOLOCATION_GET_COORDS_SUCCEEDED,
+    coords
 });
 
 export const notifyGetCoordsFailed = () => ({
@@ -17,5 +18,6 @@ export const notifyGetCoordsFailed = () => ({
 export const GEOLOCATION_SET_CITY = 'GEOLOCATION_SET_CITY';
 
 export const setGeolocationCity = city => ({
-    type: GEOLOCATION_SET_CITY, city
+    type: GEOLOCATION_SET_CITY,
+    city
 });

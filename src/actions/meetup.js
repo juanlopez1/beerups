@@ -7,7 +7,8 @@ export const requestFetchMeetups = () => ({
 });
 
 export const receivedMeetups = meetups => ({
-    type: MEETUPS_FETCH_SUCCEEDED, meetups
+    type: MEETUPS_FETCH_SUCCEEDED,
+    meetups
 });
 
 export const notifyFetchMeetupsFailed = () => ({
@@ -19,13 +20,28 @@ export const MEETUP_FETCH_SUCCEEDED = 'MEETUP_FETCH_SUCCEEDED';
 export const MEETUP_FETCH_FAILED = 'MEETUP_FETCH_FAILED';
 
 export const requestFetchMeetup = id => ({
-    type: MEETUP_FETCH_REQUESTED, id
+    type: MEETUP_FETCH_REQUESTED,
+    id
 });
 
 export const receivedMeetup = meetups => ({
-    type: MEETUP_FETCH_SUCCEEDED, meetups
+    type: MEETUP_FETCH_SUCCEEDED,
+    meetups
 });
 
 export const notifyFetchMeetupFailed = () => ({
     type: MEETUP_FETCH_FAILED
+});
+
+export const MEETUP_SEARCHER_HANDLE_CHANGE_DATE = 'MEETUP_SEARCHER_HANDLE_CHANGE_DATE';
+
+export const handleChangeSearcherDate = date => ({
+    type: MEETUP_SEARCHER_HANDLE_CHANGE_DATE,
+    date
+});
+
+export const MEETUPS_CLEAN_STORE = 'MEETUPS_CLEAN_STORE';
+
+export const cleanStoredMeetups = () => ({
+    type: MEETUPS_CLEAN_STORE
 });

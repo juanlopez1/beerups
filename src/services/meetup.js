@@ -8,8 +8,8 @@ class MeetupService {
         return HttpService.get(`${MEETUP_API_URL}/${id}`, credentials);
     }
 
-    static async fetchMany(credentials) {
-        return HttpService.get(`${MEETUP_API_URL}/list`, credentials);
+    static async fetchMany(credentials, date) {
+        return HttpService.get(`${MEETUP_API_URL}/list/${date}`, credentials);
     }
 
     static async create(data, credentials) {

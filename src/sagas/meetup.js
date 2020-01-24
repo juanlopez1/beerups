@@ -21,9 +21,11 @@ export function* fetchMeetup({id}) {
 export function* fetchMeetups() {
     try {
         const {username, password} = yield select(state => state.user);
-        const meetups = yield call(MeetupService.fetchMany, {username, password});
+        const {date} = yield select(state => state.meetup.searcher);
+        const meetups = yield call(MeetupService.fetchMany, {username, password}, date);
         yield put(receivedMeetups(meetups));
     } catch (e) {
+        console.log(e);
         yield put(notifyFetchMeetupsFailed());
     }
 }

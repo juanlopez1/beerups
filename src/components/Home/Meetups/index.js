@@ -5,9 +5,8 @@ import {
 } from '@material-ui/core';
 import {isEmpty} from 'lodash';
 
-import Table from './Table';
 import {
-    InfoMessage, ServiceUnavailable, Title
+    InfoMessage, ServiceUnavailable, Table, Title
 } from '../../common';
 
 const Meetups = () => {

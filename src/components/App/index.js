@@ -12,6 +12,7 @@ const App = ({onMount}) => {
     useEffect(() => {
         onMount();
     }, [onMount]);
+
     return (
         <BrowserRouter>
             <Header/>
