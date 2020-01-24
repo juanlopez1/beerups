@@ -6,6 +6,7 @@ import {
 } from '../actions/geolocation';
 
 const initialState = {
+    error: false,
     city: null,
     getting: false,
     coords: null
@@ -16,7 +17,8 @@ const geolocation = (state = initialState, action) => {
         case GEOLOCATION_GET_COORDS_FAILED:
             return {
                 ...state,
-                getting: false
+                getting: false,
+                error: true
             };
         case GEOLOCATION_GET_COORDS_REQUESTED:
             return {

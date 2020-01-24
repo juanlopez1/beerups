@@ -7,6 +7,7 @@ import {
 } from '../actions/weather';
 
 const initialState = {
+    error: false,
     fetching: false,
     weather: null
 };
@@ -17,7 +18,8 @@ const weather = (state = initialState, action) => {
         case WEATHER_FETCH_BY_COORDS_FAILED:
             return {
                 ...state,
-                fetching: false
+                fetching: false,
+                error: true
             };
         case WEATHER_FETCH_BY_CITY_REQUESTED:
         case WEATHER_FETCH_BY_COORDS_REQUESTED:

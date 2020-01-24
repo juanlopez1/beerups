@@ -1,33 +1,30 @@
 import React, {Fragment} from 'react';
 import {useSelector} from 'react-redux';
 import {
-    CircularProgress, Typography
+    CircularProgress
 } from '@material-ui/core';
 import {isEmpty} from 'lodash';
 
-const renderMeetups = (meetups, fetching) => {
-    if (fetching) {
-        return <CircularProgress/>;
-    }
-    if (isEmpty(meetups)) {
-        return 'No meetups';
-    }
-    return (
-        <div>
-            have meetups
-        </div>
-    );
-};
+import Table from './Table';
+import {
+    InfoMessage, ServiceUnavailable, Title
+} from '../../common';
 
 const Meetups = () => {
     const meetups = useSelector(state => state.meetup.meetups);
     const fetching = useSelector(state => state.meetup.fetching);
+    const error = useSelector(state => state.meetup.error);
+
+    if (fetching) {
+        return <CircularProgress/>;
+    }
+    if (error) {
+        return <ServiceUnavailable/>;
+    }
     return (
         <Fragment>
-            <Typography component="h2" variant="h6" color="primary" gutterBottom>
-                Next meetups
-            </Typography>
-            {renderMeetups(meetups, fetching)}
+            <Title text="Your meetups"/>
+            {isEmpty(meetups) ? <InfoMessage text="No meetups"/> : <Table meetups={meetups}/>}
         </Fragment>
     );
 };

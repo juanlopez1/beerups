@@ -57,6 +57,14 @@
       "error",
       120
     ],
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": [
+          "_id"
+        ]
+      }
+    ],
     "object-curly-spacing": [
       "error",
       "never"
