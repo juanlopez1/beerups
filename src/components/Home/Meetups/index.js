@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
-import {useSelector} from 'react-redux';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {
     CircularProgress
 } from '@material-ui/core';
@@ -9,11 +10,7 @@ import {
     InfoMessage, ServiceUnavailable, Table, Title
 } from '../../common';
 
-const Meetups = () => {
-    const meetups = useSelector(state => state.meetup.meetups);
-    const fetching = useSelector(state => state.meetup.fetching);
-    const error = useSelector(state => state.meetup.error);
-
+const Meetups = ({error, fetching, meetups}) => {
     if (fetching) {
         return <CircularProgress/>;
     }
@@ -28,4 +25,22 @@ const Meetups = () => {
     );
 };
 
-export default Meetups;
+Meetups.propTypes = {
+    error: PropTypes.bool,
+    fetching: PropTypes.bool,
+    meetups: PropTypes.arrayOf(PropTypes.object)
+};
+
+Meetups.defaultProps = {
+    error: false,
+    fetching: false,
+    meetups: []
+};
+
+export default connect(
+    state => ({
+        error: state.meetup.error,
+        fetching: state.meetup.fetching,
+        meetups: state.meetup.meetups
+    })
+)(Meetups);

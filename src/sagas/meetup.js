@@ -25,7 +25,6 @@ export function* fetchMeetups() {
         const meetups = yield call(MeetupService.fetchMany, {username, password}, date);
         yield put(receivedMeetups(meetups));
     } catch (e) {
-        console.log(e);
         yield put(notifyFetchMeetupsFailed());
     }
 }

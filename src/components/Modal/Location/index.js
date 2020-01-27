@@ -8,12 +8,10 @@ import {filter, map, sortBy} from 'lodash';
 
 import countries from '../../../static/countries.json';
 import cities from '../../../static/cities.json';
-import useStyles from './styles';
 import {setGeolocationCity} from '../../../actions/geolocation';
 import {hideModal} from '../../../actions/modal';
 
 const Location = ({onSubmit}) => {
-    const styles = useStyles();
     const [selectedCountry, setCountry] = useState('');
     const [selectedCity, setCity] = useState('');
     const [filteredCities, setCities] = useState([]);
@@ -24,10 +22,10 @@ const Location = ({onSubmit}) => {
         ));
     };
     return (
-        <div className={styles.paper}>
+        <div className="location-paper">
             <h2>Location</h2>
             <p>Please, select your country and city.</p>
-            <FormControl className={styles.formControl}>
+            <FormControl className="form-control">
                 <InputLabel>
                     Country
                 </InputLabel>
@@ -39,7 +37,7 @@ const Location = ({onSubmit}) => {
                     ))}
                 </Select>
             </FormControl>
-            <FormControl className={styles.formControl} disabled={!selectedCountry}>
+            <FormControl className="form-control" disabled={!selectedCountry}>
                 <InputLabel>
                     City
                 </InputLabel>

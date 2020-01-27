@@ -1,5 +1,5 @@
-import formatDate from './formatDate';
-import formatTime from './formatTime';
+import calculateOptimalBeerQuantity from './calculateOptimalBeerQuantity';
+import getWeatherData from './getWeatherData';
 
-export {formatDate};
-export {formatTime};
+export {calculateOptimalBeerQuantity};
+export {getWeatherData};

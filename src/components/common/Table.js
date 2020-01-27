@@ -7,21 +7,13 @@ import {map} from 'lodash';
 
 const Table = ({meetups}) => (
     <TableContainer component={Paper}>
-        <TableComponent aria-label="simple table">
+        <TableComponent>
             <TableHead>
                 <TableRow>
-                    <TableCell align="center">
-                        Title
-                    </TableCell>
-                    <TableCell align="center">
-                        Description
-                    </TableCell>
-                    <TableCell align="center">
-                        Place
-                    </TableCell>
-                    <TableCell align="center">
-                        Date/Time
-                    </TableCell>
+                    <TableCell align="center">Title</TableCell>
+                    <TableCell align="center">Description</TableCell>
+                    <TableCell align="center">Place</TableCell>
+                    <TableCell align="center">Date/Time</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>

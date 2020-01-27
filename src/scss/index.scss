@@ -17,6 +17,16 @@ body {
     display: flex;
     flex: 2;
     min-height: 7vh;
+
+    .header-icon {
+      margin-right: 20px;
+    }
+
+    .header-title {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+    }
   }
 
   main {
@@ -37,6 +47,83 @@ body {
       display: flex;
       flex: 85;
       flex-direction: column;
+
+      .route-container {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        justify-content: center;
+      }
     }
   }
+}
+
+table thead tr th {
+  font-weight: bold !important;
+}
+
+.weather {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  .temperature {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    img {
+      display: flex;
+      width: 70px;
+      margin: 5px;
+    }
+
+    .temp {
+      font-weight: bold;
+      font-size: x-large;
+    }
+  }
+
+  .description {
+    font-weight: bold;
+    word-wrap: break-word;
+    color: #a5a5a5;
+    font-size: x-large;
+  }
+
+  table {
+    width: 50%;
+  }
+}
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .location-paper {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 3px 3px -2px, rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 1px 8px 0px;
+    padding: 20px;
+  }
+}
+
+.paper {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  overflow: auto;
+}
+
+.searcher-text-input {
+  margin: 10px;
+  width: 200px;
+}
+
+.form-control {
+  margin: 10px !important;
+  min-width: 120px;
 }

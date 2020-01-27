@@ -1,3 +1,5 @@
+import {getWeatherData} from '../util';
+
 const {REACT_APP_OPEN_WEATHER_API_ENDPOINT, REACT_APP_OPEN_WEATHER_API_ID} = process.env;
 
 class WeatherService {
@@ -5,9 +7,9 @@ class WeatherService {
         const response = await fetch(url, {
             method: 'GET'
         });
-        const weather = response.json();
-
-        return weather;
+        return getWeatherData(
+            await response.json()
+        );
     }
 
     static async fetchWeatherByCoords(coords) {

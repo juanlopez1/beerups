@@ -5,24 +5,19 @@ import {
     Backdrop, Fade, Modal as ModalComponent
 } from '@material-ui/core';
 
-import useStyles from './styles';
-
-const Modal = ({Content, showing}) => {
-    const styles = useStyles();
-    return (
-        <ModalComponent
-            open={showing}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{timeout: 500}}
-            className={styles.modal}
-        >
-            <Fade in={showing}>
-                <Content/>
-            </Fade>
-        </ModalComponent>
-    );
-};
+const Modal = ({Content, showing}) => (
+    <ModalComponent
+        open={showing}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{timeout: 500}}
+        className="modal"
+    >
+        <Fade in={showing}>
+            <Content/>
+        </Fade>
+    </ModalComponent>
+);
 
 Modal.propTypes = {
     showing: PropTypes.bool.isRequired,

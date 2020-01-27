@@ -1,11 +1,10 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {connect, useSelector} from 'react-redux';
+import {connect} from 'react-redux';
 import {CircularProgress, Container} from '@material-ui/core';
 import {isEmpty} from 'lodash';
 
 import Searcher from './Searcher';
-import useStyles from './styles';
 import {
     InfoMessage, ServiceUnavailable, Table, Title
 } from '../common';
@@ -21,18 +20,15 @@ const renderMeetupList = (meetups, fetching, error) => {
     return isEmpty(meetups) ? <InfoMessage text="Not found any meetup"/> : <Table meetups={meetups}/>;
 };
 
-const Calendar = ({onMount}) => {
-    const styles = useStyles();
-    const meetups = useSelector(state => state.meetup.meetups);
-    const fetching = useSelector(state => state.meetup.fetching);
-    const error = useSelector(state => state.meetup.error);
-
+const Calendar = ({
+    error, fetching, meetups, onMount
+}) => {
     useEffect(() => {
         onMount();
     }, [onMount]);
 
     return (
-        <Container maxWidth="lg" className={styles.container}>
+        <Container maxWidth="lg" className="route-container">
             <Title text="Search meetups"/>
             <Searcher/>
             {renderMeetupList(meetups, fetching, error)}
@@ -41,10 +37,23 @@ const Calendar = ({onMount}) => {
 };
 
 Calendar.propTypes = {
-    onMount: PropTypes.func.isRequired
+    onMount: PropTypes.func.isRequired,
+    error: PropTypes.bool,
+    fetching: PropTypes.bool,
+    meetups: PropTypes.arrayOf(PropTypes.object)
+};
+
+Calendar.defaultProps = {
+    error: false,
+    fetching: false,
+    meetups: []
 };
 
 export default connect(
-    null,
+    state => ({
+        error: state.meetup.error,
+        fetching: state.meetup.fetching,
+        meetups: state.meetup.meetups
+    }),
     {onMount: cleanStoredMeetups}
 )(Calendar);

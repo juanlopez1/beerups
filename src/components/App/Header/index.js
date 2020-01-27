@@ -4,25 +4,20 @@ import {
 } from '@material-ui/core';
 import {LocalCafe} from '@material-ui/icons';
 
-import useStyles from './styles';
-
-const Header = () => {
-    const styles = useStyles();
-    return (
-        <header>
-            <AppBar position="static">
-                <Toolbar>
-                    <Typography variant="h6" className={styles.title}>
-                        <LocalCafe className={styles.titleIcon}/>
-                        BeerUps
-                    </Typography>
-                    <Button color="inherit">
-                        Sign Out
-                    </Button>
-                </Toolbar>
-            </AppBar>
-        </header>
-    );
-};
+const Header = () => (
+    <header>
+        <AppBar position="static">
+            <Toolbar>
+                <Typography variant="h6" className="header-title">
+                    <LocalCafe className="header-icon"/>
+                    BeerUps
+                </Typography>
+                <Button color="inherit">
+                    Sign Out
+                </Button>
+            </Toolbar>
+        </AppBar>
+    </header>
+);
 
 export default Header;

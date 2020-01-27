@@ -7,24 +7,23 @@ import {
 
 import Meetups from './Meetups';
 import Weather from './Weather';
-import useStyles from './styles';
 import {requestFetchMeetups} from '../../actions/meetup';
 
 const Home = ({onMount}) => {
-    const styles = useStyles();
     useEffect(() => {
         onMount();
     }, [onMount]);
+
     return (
-        <Container maxWidth="lg" className={styles.container}>
+        <Container maxWidth="lg" className="route-container">
             <Grid container spacing={3}>
                 <Grid item sm={12}>
-                    <Paper className={styles.paper}>
+                    <Paper className="paper">
                         <Weather/>
                     </Paper>
                 </Grid>
                 <Grid item sm={12}>
-                    <Paper className={styles.paper}>
+                    <Paper className="paper">
                         <Meetups/>
                     </Paper>
                 </Grid>
