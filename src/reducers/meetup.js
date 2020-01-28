@@ -12,6 +12,7 @@ import {
     MEETUP_SAVE_FAILED,
     MEETUP_SAVE_SUCCEEDED
 } from '../actions/meetup';
+import {getMinDate} from '../util';
 
 const initialState = {
     error: false,
@@ -19,7 +20,8 @@ const initialState = {
     meetup: {},
     meetups: [],
     searcher: {
-        date: ''
+        date: '',
+        min: getMinDate()
     }
 };
 

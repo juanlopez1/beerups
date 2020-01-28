@@ -32,9 +32,9 @@ Header.propTypes = {
     details: PropTypes.shape({
         name: PropTypes.string,
         username: PropTypes.string,
-        role: {
+        role: PropTypes.shape({
             name: PropTypes.string
-        }
+        })
     }).isRequired
 };
 

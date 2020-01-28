@@ -16,7 +16,7 @@ const NavPanel = ({history}) => (
             </ListItemIcon>
             <ListItemText primary="Home"/>
         </ListItem>
-        <ListItem button onClick={() => history.push('calendar')}>
+        <ListItem button onClick={() => history.push('/calendar')}>
             <ListItemIcon>
                 <CalendarToday/>
             </ListItemIcon>

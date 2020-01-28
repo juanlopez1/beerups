@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    Paper, Table as TableComponent, TableBody, TableCell, TableContainer, TableHead, TableRow
+    Fab, Paper, Table as TableComponent, TableBody, TableCell, TableContainer, TableHead, TableRow
 } from '@material-ui/core';
+import {Visibility} from '@material-ui/icons';
 import {map} from 'lodash';
 
-const Table = ({meetups}) => (
+const Table = ({meetups, onShowMeetup}) => (
     <TableContainer component={Paper}>
         <TableComponent>
             <TableHead>
@@ -14,6 +15,7 @@ const Table = ({meetups}) => (
                     <TableCell align="center">Description</TableCell>
                     <TableCell align="center">Place</TableCell>
                     <TableCell align="center">Date/Time</TableCell>
+                    <TableCell align="center">Actions</TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -33,6 +35,11 @@ const Table = ({meetups}) => (
                             &nbsp;
                             {meetup.time}
                         </TableCell>
+                        <TableCell align="center">
+                            <Fab size="small" onClick={() => onShowMeetup(meetup._id)}>
+                                <Visibility/>
+                            </Fab>
+                        </TableCell>
                     </TableRow>
                 ))}
             </TableBody>
@@ -41,6 +48,7 @@ const Table = ({meetups}) => (
 );
 
 Table.propTypes = {
+    onShowMeetup: PropTypes.func.isRequired,
     meetups: PropTypes.arrayOf(PropTypes.shape({
         _id: PropTypes.string,
         title: PropTypes.string,

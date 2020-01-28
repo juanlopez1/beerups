@@ -10,19 +10,25 @@ import {
 } from '../common';
 import {resetMeetupsReducer} from '../../actions/meetup';
 
-const renderMeetupList = (meetups, fetching, error) => {
+const renderMeetupList = (meetups, fetching, error, handleShowMeetup) => {
     if (fetching) {
         return <CircularProgress/>;
     }
     if (error) {
         return <ServiceUnavailable/>;
     }
-    return isEmpty(meetups) ? <InfoMessage text="Not found any meetup"/> : <Table meetups={meetups}/>;
+    return isEmpty(meetups) ? (
+        <InfoMessage text="Not found any meetup"/>
+    ) : (
+        <Table meetups={meetups} onShowMeetup={handleShowMeetup}/>
+    );
 };
 
 const Calendar = ({
     error, fetching, history, meetups, onMount
 }) => {
+    const handleShowMeetup = id => history.push(`meetup/${id}`);
+
     useEffect(() => {
         onMount();
     }, [onMount]);
@@ -32,7 +38,7 @@ const Calendar = ({
             <PaperCard>
                 <Title>Search meetups</Title>
                 <Searcher onCreateMeetup={() => history.push('meetup')}/>
-                {renderMeetupList(meetups, fetching, error)}
+                {renderMeetupList(meetups, fetching, error, handleShowMeetup)}
             </PaperCard>
         </RouteContainer>
     );

@@ -23,6 +23,7 @@ import {
 } from '../../../util';
 import {handleChangeAnswerMeetup} from '../../../actions/meetup';
 import {requestFetchUsers} from '../../../actions/user';
+import roles from '../../../static/roles';
 
 const MenuProps = {
     PaperProps: {
@@ -34,7 +35,7 @@ const MenuProps = {
 };
 
 const Form = ({
-    forecast, meetup, users, onChangeAnswer, onMount, onSubmit
+    forecast, meetup, users, onChangeAnswer, onMount, onSubmit, role
 }) => {
     const handleChangeAnswer = ({target: {name, value}}) => onChangeAnswer({[name]: value});
     const handleChangeBeer = ({target: {name, value}}) => {
@@ -57,6 +58,7 @@ const Form = ({
                     onChange={handleChangeAnswer}
                     fullWidth
                     required
+                    disabled={role === roles.USER}
                 />
             </Grid>
             <Grid item sm={12}>
@@ -66,6 +68,7 @@ const Form = ({
                     value={meetup.description || ''}
                     onChange={handleChangeAnswer}
                     className="text-area"
+                    disabled={role === roles.USER}
                 />
             </Grid>
             <Grid item sm={12}>
@@ -90,6 +93,7 @@ const Form = ({
                             </div>
                         )}
                         MenuProps={MenuProps}
+                        disabled={role === roles.USER}
                     >
                         {map(users, user => (
                             <MenuItem key={user._id} value={user}>
@@ -108,6 +112,8 @@ const Form = ({
                     onChange={handleChangeAnswer}
                     fullWidth
                     required
+                    disabled={role === roles.USER}
+
                 />
             </Grid>
             <Grid item sm={6}>
@@ -121,6 +127,7 @@ const Form = ({
                         value={meetup.date || ''}
                         onChange={handleChangeAnswer}
                         required
+                        disabled={role === roles.USER}
                     >
                         {map(forecast.dates, date => (
                             <MenuItem key={date} value={date}>
@@ -143,7 +150,7 @@ const Form = ({
                     onChange={handleChangeAnswer}
                     fullWidth
                     required
-                    disabled={!meetup.date}
+                    disabled={!meetup.date || role === roles.USER}
                 />
             </Grid>
             <Grid item sm={6}>
@@ -155,7 +162,7 @@ const Form = ({
                     onChange={handleChangeBeer}
                     fullWidth
                     required
-                    disabled={!meetup.time}
+                    disabled={!meetup.time || role === roles.USER}
                 />
             </Grid>
             <Grid item sm={6}>
@@ -163,6 +170,7 @@ const Form = ({
                     <Forecast
                         forecast={getForecast(forecast, meetup)}
                         participants={meetup.participants.length}
+                        role={role}
                     />
                 ) : (
                     <Typography component="h6" color="error" gutterBottom>
@@ -170,16 +178,19 @@ const Form = ({
                     </Typography>
                 )}
             </Grid>
-            <Grid item container sm={12} justify="flex-end">
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={onSubmit}
-                    disabled={isSaveButtonDisabled(meetup)}
-                >
-                    Save
-                </Button>
-            </Grid>
+            {role === roles.ADMIN && (
+                <Grid item container sm={12} justify="flex-end">
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={onSubmit}
+                        disabled={isSaveButtonDisabled(meetup)}
+                    >
+                        Save
+                    </Button>
+                </Grid>
+
+            )}
         </Grid>
     ) : (
         <CircularProgress/>
@@ -190,6 +201,7 @@ Form.propTypes = {
     onChangeAnswer: PropTypes.func.isRequired,
     onMount: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
+    role: PropTypes.string.isRequired,
     forecast: PropTypes.shape({
         data: PropTypes.arrayOf(PropTypes.object),
         dates: PropTypes.arrayOf(PropTypes.string)
@@ -218,7 +230,8 @@ export default connect(
     state => ({
         forecast: state.weather.forecast,
         meetup: state.meetup.meetup,
-        users: state.user.users
+        users: state.user.users,
+        role: state.user.details.role.value
     }),
     {
         onChangeAnswer: handleChangeAnswerMeetup,

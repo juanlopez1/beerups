@@ -1,5 +1,6 @@
 import {call, put, select} from 'redux-saga/effects';
 
+import {split} from 'lodash';
 import {MeetupService} from '../services';
 import {
     notifyFetchMeetupFailed,
@@ -26,11 +27,13 @@ export function* fetchMeetups() {
     try {
         const details = yield select(state => state.user.details);
         const {date} = yield select(state => state.meetup.searcher);
+        const splittedDate = split(date, '-');
+        const searchDate = `${splittedDate[1]}-${splittedDate[2]}-${splittedDate[0]}`;
         let meetups = [];
 
         if (date) {
             meetups = yield call(
-                MeetupService.fetchByDate, {username: details.username, role: details.role.value}, date
+                MeetupService.fetchByDate, {username: details.username, role: details.role.value}, searchDate
             );
         } else {
             meetups = yield call(
