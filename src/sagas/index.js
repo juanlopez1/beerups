@@ -15,6 +15,9 @@ import {
     WEATHER_FETCH_BY_CITY_REQUESTED
 } from '../actions/weather';
 import {
+    USER_GET_SESSION_REQUESTED,
+    USER_LOGIN_REQUESTED,
+    USER_LOG_OUT_REQUESTED,
     USERS_FETCH_REQUESTED
 } from '../actions/user';
 import {
@@ -32,7 +35,10 @@ import {
     fetchWeatherByCity
 } from './weather';
 import {
-    fetchUsers
+    fetchUsers,
+    clearSession,
+    getSession,
+    login
 } from './user';
 
 function* root() {
@@ -42,6 +48,9 @@ function* root() {
         takeLatest(MEETUP_FETCH_REQUESTED, fetchMeetup),
         takeLatest(MEETUPS_FETCH_REQUESTED, fetchMeetups),
         takeLatest(MEETUP_SAVE_REQUESTED, saveMeetup),
+        takeLatest(USER_GET_SESSION_REQUESTED, getSession),
+        takeLatest(USER_LOG_OUT_REQUESTED, clearSession),
+        takeLatest(USER_LOGIN_REQUESTED, login),
         takeLatest(USERS_FETCH_REQUESTED, fetchUsers),
         takeLatest(WEATHER_FETCH_BY_COORDS_REQUESTED, fetchWeatherByCoords),
         takeLatest(WEATHER_FETCH_BY_CITY_REQUESTED, fetchWeatherByCity),

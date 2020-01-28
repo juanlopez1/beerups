@@ -6,8 +6,8 @@ import {PaperCard} from '../../common';
 import {calculateOptimalBeerQuantity} from '../../../util';
 
 const Forecast = ({forecast, participants}) => {
-    const beersQuantity = calculateOptimalBeerQuantity(participants, forecast.temp);
-    const feelsLikeBeersQuantity = calculateOptimalBeerQuantity(participants, forecast.feelsLike);
+    const beers = calculateOptimalBeerQuantity(participants, forecast.temp);
+    const feelsLikeBeers = calculateOptimalBeerQuantity(participants, forecast.feelsLike);
     return (
         <PaperCard>
             <Typography component="h4" color="primary">
@@ -15,27 +15,16 @@ const Forecast = ({forecast, participants}) => {
             </Typography>
             <div className="forecast">
                 <div className="temp">
-                    {forecast.temp}
-                    &nbsp;°C
+                    {`${forecast.temp} °C`}
                 </div>
                 <p className="temp-description">
-                    We recommend you to order&nbsp;
-                    {beersQuantity.beers}
-                    &nbsp;beers (
-                    {beersQuantity.boxes}
-                    &nbsp;boxes)
+                    {`We recommend you to order ${beers.beers} beers (${beers.boxes} boxes)`}
                 </p>
                 <div className="feels-like">
-                    {forecast.feelsLike}
-                    &nbsp;°C
-                    (feels like)
+                    {`${forecast.feelsLike} °C (feels like)`}
                 </div>
                 <p className="feels-like-description">
-                    We recommend you to order&nbsp;
-                    {feelsLikeBeersQuantity.beers}
-                    &nbsp;beers (
-                    {feelsLikeBeersQuantity.boxes}
-                    &nbsp;boxes)
+                    {`We recommend you to order ${feelsLikeBeers.beers} beers (${feelsLikeBeers.boxes} boxes)`}
                 </p>
             </div>
         </PaperCard>

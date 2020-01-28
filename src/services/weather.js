@@ -32,7 +32,7 @@ class WeatherService {
         return getWeatherData(await response.json());
     }
 
-    static async fetchWeatherByCoords(coords) {
+    static fetchWeatherByCoords(coords) {
         const query = new URLSearchParams();
         query.set('lat', coords.latitude);
         query.set('lon', coords.longitude);
@@ -41,7 +41,7 @@ class WeatherService {
         return WeatherService.fetchWeather(`${WEATHER_API_URL}?${query.toString()}`);
     }
 
-    static async fetchWeatherByCity(city) {
+    static fetchWeatherByCity(city) {
         const query = new URLSearchParams();
         query.set('id', city);
         query.set('units', 'metric');

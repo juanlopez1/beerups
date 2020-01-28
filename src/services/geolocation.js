@@ -1,5 +1,5 @@
 class GeolocationService {
-    static async getLocation() {
+    static getLocation() {
         const getCurrentPosition = () => new Promise((resolve, reject) => (
             navigator.geolocation.getCurrentPosition(
                 location => resolve(location),

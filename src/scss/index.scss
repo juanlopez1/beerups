@@ -18,14 +18,17 @@ body {
     flex: 2;
     min-height: 7vh;
 
+    .header-container {
+      justify-content: space-between;
+    }
+
     .header-icon {
-      margin-right: 20px;
+      margin-right: 5px;
     }
 
     .header-title {
       display: flex;
       align-items: center;
-      flex-grow: 1;
     }
   }
 
@@ -185,5 +188,35 @@ table thead tr th {
     font-size: medium;
     font-weight: bold;
     color: #9b9b9b;
+  }
+}
+
+.login-paper {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
+
+  .brand {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-right: 3px;
+    border-radius: 7px;
+    color: white;
+    background-color: #3f51b5;
+
+    .icon {
+      margin-right: 5px;
+    }
+  }
+
+  .content {
+    width: 100%;
+    margin-top: 10px;
+
+    .submit-button {
+      margin-top: 5px;
+    }
   }
 }

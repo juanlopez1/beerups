@@ -21,8 +21,7 @@ const Weather = ({error, fetching, weather}) => {
                 <div className="temperature">
                     <img alt="icon" src={weather.details.icon}/>
                     <div className="temp">
-                        {weather.details.temp}
-                        &nbsp;°C
+                        {`${weather.details.temp} °C`}
                     </div>
                 </div>
                 <div className="description">
@@ -41,20 +40,16 @@ const Weather = ({error, fetching, weather}) => {
                     <TableBody>
                         <TableRow>
                             <TableCell component="th" scope="row" align="center">
-                                {weather.details.feelsLike}
-                                &nbsp;°C
+                                {`${weather.details.feelsLike} °C`}
                             </TableCell>
                             <TableCell align="center">
-                                {weather.details.min}
-                                &nbsp;°C
+                                {`${weather.details.min} °C`}
                             </TableCell>
                             <TableCell align="center">
-                                {weather.details.max}
-                                &nbsp;°C
+                                {`${weather.details.max} °C`}
                             </TableCell>
                             <TableCell align="center">
-                                {weather.details.pressure}
-                                &nbsp;hpa
+                                {`${weather.details.pressure} hpa`}
                             </TableCell>
                             <TableCell align="center">
                                 {weather.details.humidity}

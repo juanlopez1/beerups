@@ -12,8 +12,10 @@ import {
 
 export function* fetchMeetup({id}) {
     try {
-        const {username, password} = yield select(state => state.user);
-        const meetup = yield call(MeetupService.fetchOne, {username, password}, id);
+        const details = yield select(state => state.user.details);
+        const meetup = yield call(
+            MeetupService.fetchOne, {username: details.username, role: details.role.value}, id
+        );
         yield put(receiveMeetup(meetup));
     } catch (e) {
         yield put(notifyFetchMeetupFailed());
@@ -22,14 +24,18 @@ export function* fetchMeetup({id}) {
 
 export function* fetchMeetups() {
     try {
-        const {username, password} = yield select(state => state.user);
+        const details = yield select(state => state.user.details);
         const {date} = yield select(state => state.meetup.searcher);
         let meetups = [];
 
         if (date) {
-            meetups = yield call(MeetupService.fetchByDate, {username, password}, date);
+            meetups = yield call(
+                MeetupService.fetchByDate, {username: details.username, role: details.role.value}, date
+            );
         } else {
-            meetups = yield call(MeetupService.fetchByUser, {username, password});
+            meetups = yield call(
+                MeetupService.fetchByUser, {username: details.username, role: details.role.value}
+            );
         }
         yield put(receiveMeetups(meetups));
     } catch (e) {
@@ -39,13 +45,17 @@ export function* fetchMeetups() {
 
 export function* saveMeetup({id}) {
     try {
-        const {username, password} = yield select(state => state.user);
+        const details = yield select(state => state.user.details);
         const meetup = yield select(state => state.meetup.meetup);
 
         if (id) {
-            yield call(MeetupService.edit, {username, password}, id, meetup);
+            yield call(
+                MeetupService.edit, {username: details.username, role: details.role.value}, id, meetup
+            );
         } else {
-            yield call(MeetupService.create, {username, password}, meetup);
+            yield call(
+                MeetupService.create, {username: details.username, role: details.role.value}, meetup
+            );
         }
         yield put(notifySaveMeetupSucceeded());
     } catch (e) {

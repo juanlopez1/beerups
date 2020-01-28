@@ -1,19 +1,20 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
 
 import NavPanel from './NavPanel';
 import Header from './Header';
+import Login from '../SignIn';
 import Routes from './Routes';
-import {requestGetCoords} from '../../actions/geolocation';
+import {requestGetSession} from '../../actions/user';
 
-const App = ({onMount}) => {
+const App = ({logged, onMount}) => {
     useEffect(() => {
         onMount();
     }, [onMount]);
 
-    return (
+    return logged ? (
         <BrowserRouter>
             <Header/>
             <main>
@@ -21,14 +22,23 @@ const App = ({onMount}) => {
                 <Routes/>
             </main>
         </BrowserRouter>
+    ) : (
+        <Login/>
     );
 };
 
 App.propTypes = {
-    onMount: PropTypes.func.isRequired
+    onMount: PropTypes.func.isRequired,
+    logged: PropTypes.bool
+};
+
+App.defaultProps = {
+    logged: false
 };
 
 export default connect(
-    null,
-    {onMount: requestGetCoords}
+    state => ({
+        logged: state.user.logged
+    }),
+    {onMount: requestGetSession}
 )(App);
