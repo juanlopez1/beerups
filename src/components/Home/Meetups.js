@@ -8,7 +8,7 @@ import {isEmpty} from 'lodash';
 
 import {
     InfoMessage, ServiceUnavailable, Table, Title
-} from '../../common';
+} from '../common';
 
 const Meetups = ({error, fetching, meetups}) => {
     if (fetching) {
@@ -19,7 +19,7 @@ const Meetups = ({error, fetching, meetups}) => {
     }
     return (
         <Fragment>
-            <Title text="Your meetups"/>
+            <Title>Your meetups</Title>
             {isEmpty(meetups) ? <InfoMessage text="No meetups"/> : <Table meetups={meetups}/>}
         </Fragment>
     );

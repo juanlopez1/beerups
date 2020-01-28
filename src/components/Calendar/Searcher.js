@@ -7,12 +7,12 @@ import {
 
 import {
     handleChangeSearcherDate, requestFetchMeetups
-} from '../../../actions/meetup';
+} from '../../actions/meetup';
 
 const Searcher = ({
-    date, handleChangeDate, onSubmit
+    date, handleChangeDate, onCreateMeetup, onSubmit
 }) => (
-    <Grid container justify="space-around">
+    <Grid container justify="space-around" className="searcher">
         <TextField
             id="date"
             className="searcher-text-input"
@@ -35,7 +35,7 @@ const Searcher = ({
         <Button
             variant="contained"
             color="secondary"
-            onClick={onSubmit}
+            onClick={onCreateMeetup}
         >
             Create Meetup
         </Button>
@@ -44,6 +44,7 @@ const Searcher = ({
 
 Searcher.propTypes = {
     handleChangeDate: PropTypes.func.isRequired,
+    onCreateMeetup: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     date: PropTypes.string
 };

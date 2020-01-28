@@ -1,9 +1,11 @@
-import React, {Component, PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {
     Backdrop, Fade, Modal as ModalComponent
 } from '@material-ui/core';
+
+import {childrenPropTypes} from '../../util';
 
 const Modal = ({Content, showing}) => (
     <ModalComponent
@@ -21,22 +23,7 @@ const Modal = ({Content, showing}) => (
 
 Modal.propTypes = {
     showing: PropTypes.bool.isRequired,
-    Content: PropTypes.oneOfType([
-        PropTypes.instanceOf(Component),
-        PropTypes.instanceOf(PureComponent),
-        PropTypes.object,
-        PropTypes.node,
-        PropTypes.func,
-        PropTypes.element,
-        PropTypes.arrayOf(PropTypes.oneOfType([
-            PropTypes.instanceOf(Component),
-            PropTypes.instanceOf(PureComponent),
-            PropTypes.object,
-            PropTypes.node,
-            PropTypes.func,
-            PropTypes.element
-        ]))
-    ])
+    Content: childrenPropTypes
 };
 
 Modal.defaultProps = {

@@ -3,12 +3,12 @@ import {Route, Switch} from 'react-router';
 
 import Calendar from '../Calendar';
 import Home from '../Home';
-import Meetup from '../Meetup';
+import MeetupEditor from '../MeetupEditor';
 
 const Routes = () => (
     <div className="routes">
         <Switch>
-            <Route path="/meetup" component={Meetup}/>
+            <Route path="/meetup/:id?" component={MeetupEditor}/>
             <Route path="/calendar" component={Calendar}/>
             <Route path="/" component={Home}/>
         </Switch>

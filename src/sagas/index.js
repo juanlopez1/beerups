@@ -9,9 +9,13 @@ import {
     MEETUPS_FETCH_REQUESTED
 } from '../actions/meetup';
 import {
+    WEATHER_FETCH_FORECAST_REQUESTED,
     WEATHER_FETCH_BY_COORDS_REQUESTED,
     WEATHER_FETCH_BY_CITY_REQUESTED
 } from '../actions/weather';
+import {
+    USERS_FETCH_REQUESTED
+} from '../actions/user';
 import {
     getCoords,
     setCity
@@ -21,9 +25,13 @@ import {
     fetchMeetups
 } from './meetup';
 import {
+    fetchForecast,
     fetchWeatherByCoords,
     fetchWeatherByCity
 } from './weather';
+import {
+    fetchUsers
+} from './user';
 
 function* root() {
     yield all([
@@ -31,8 +39,10 @@ function* root() {
         takeLatest(GEOLOCATION_SET_CITY, setCity),
         takeLatest(MEETUP_FETCH_REQUESTED, fetchMeetup),
         takeLatest(MEETUPS_FETCH_REQUESTED, fetchMeetups),
+        takeLatest(USERS_FETCH_REQUESTED, fetchUsers),
         takeLatest(WEATHER_FETCH_BY_COORDS_REQUESTED, fetchWeatherByCoords),
-        takeLatest(WEATHER_FETCH_BY_CITY_REQUESTED, fetchWeatherByCity)
+        takeLatest(WEATHER_FETCH_BY_CITY_REQUESTED, fetchWeatherByCity),
+        takeLatest(WEATHER_FETCH_FORECAST_REQUESTED, fetchForecast)
     ]);
 }
 

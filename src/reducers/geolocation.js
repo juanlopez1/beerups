@@ -23,7 +23,8 @@ const geolocation = (state = initialState, action) => {
         case GEOLOCATION_GET_COORDS_REQUESTED:
             return {
                 ...state,
-                getting: true
+                getting: true,
+                error: false
             };
         case GEOLOCATION_GET_COORDS_SUCCEEDED:
             return {

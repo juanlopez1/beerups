@@ -6,7 +6,7 @@ export const requestGetCoords = () => ({
     type: GEOLOCATION_GET_COORDS_REQUESTED
 });
 
-export const receivedCoords = coords => ({
+export const receiveCoords = coords => ({
     type: GEOLOCATION_GET_COORDS_SUCCEEDED,
     coords
 });

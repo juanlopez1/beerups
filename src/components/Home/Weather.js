@@ -5,7 +5,7 @@ import {
     CircularProgress, Table as TableComponent, TableBody, TableCell, TableHead, TableRow
 } from '@material-ui/core';
 
-import {ServiceUnavailable, Title} from '../../common';
+import {ServiceUnavailable, Title} from '../common';
 
 const Weather = ({error, fetching, weather}) => {
     if (fetching || !weather) {
@@ -16,7 +16,7 @@ const Weather = ({error, fetching, weather}) => {
     }
     return (
         <Fragment>
-            <Title text={`Weather in ${weather.name}, ${weather.country}`}/>
+            <Title>{`Weather in ${weather.name}, ${weather.country}`}</Title>
             <div className="weather">
                 <div className="temperature">
                     <img alt="icon" src={weather.details.icon}/>

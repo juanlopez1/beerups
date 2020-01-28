@@ -6,7 +6,7 @@ export const requestFetchMeetups = () => ({
     type: MEETUPS_FETCH_REQUESTED
 });
 
-export const receivedMeetups = meetups => ({
+export const receiveMeetups = meetups => ({
     type: MEETUPS_FETCH_SUCCEEDED,
     meetups
 });
@@ -24,9 +24,9 @@ export const requestFetchMeetup = id => ({
     id
 });
 
-export const receivedMeetup = meetups => ({
+export const receiveMeetup = meetup => ({
     type: MEETUP_FETCH_SUCCEEDED,
-    meetups
+    meetup
 });
 
 export const notifyFetchMeetupFailed = () => ({
@@ -44,4 +44,11 @@ export const MEETUPS_CLEAN_STORE = 'MEETUPS_CLEAN_STORE';
 
 export const cleanStoredMeetups = () => ({
     type: MEETUPS_CLEAN_STORE
+});
+
+export const MEETUP_HANDLE_CHANGE_ANSWER_FORM = 'MEETUP_HANDLE_CHANGE_ANSWER_FORM';
+
+export const handleChangeAnswerMeetup = answer => ({
+    type: MEETUP_HANDLE_CHANGE_ANSWER_FORM,
+    answer
 });

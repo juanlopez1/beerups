@@ -7,6 +7,7 @@ const getWeatherData = weather => {
     return {
         name: weather.name,
         country: weather.sys.country,
+        coord: weather.coord,
         details: {
             title: data.main,
             description: data.description,

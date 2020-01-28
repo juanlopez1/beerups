@@ -1,12 +1,13 @@
 import {
-    MEETUPS_CLEAN_STORE,
     MEETUP_FETCH_FAILED,
-    MEETUPS_FETCH_FAILED,
     MEETUP_FETCH_REQUESTED,
-    MEETUPS_FETCH_REQUESTED,
     MEETUP_FETCH_SUCCEEDED,
-    MEETUPS_FETCH_SUCCEEDED,
-    MEETUP_SEARCHER_HANDLE_CHANGE_DATE
+    MEETUP_HANDLE_CHANGE_ANSWER_FORM,
+    MEETUP_SEARCHER_HANDLE_CHANGE_DATE,
+    MEETUPS_CLEAN_STORE,
+    MEETUPS_FETCH_FAILED,
+    MEETUPS_FETCH_REQUESTED,
+    MEETUPS_FETCH_SUCCEEDED
 } from '../actions/meetup';
 
 const initialState = {
@@ -37,7 +38,8 @@ const meetup = (state = initialState, action) => {
         case MEETUPS_FETCH_REQUESTED:
             return {
                 ...state,
-                fetching: true
+                fetching: true,
+                error: false
             };
         case MEETUP_FETCH_SUCCEEDED:
             return {
@@ -58,6 +60,11 @@ const meetup = (state = initialState, action) => {
                     ...state.searcher,
                     date: action.date
                 }
+            };
+        case MEETUP_HANDLE_CHANGE_ANSWER_FORM:
+            return {
+                ...state,
+                meetup: {...state.meetup, ...action.answer}
             };
         default:
             return state;

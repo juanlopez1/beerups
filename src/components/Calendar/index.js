@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {CircularProgress, Container} from '@material-ui/core';
+import {CircularProgress} from '@material-ui/core';
 import {isEmpty} from 'lodash';
 
 import Searcher from './Searcher';
 import {
-    InfoMessage, ServiceUnavailable, Table, Title
+    InfoMessage, PaperCard, RouteContainer, ServiceUnavailable, Table, Title
 } from '../common';
 import {cleanStoredMeetups} from '../../actions/meetup';
 
@@ -21,22 +21,27 @@ const renderMeetupList = (meetups, fetching, error) => {
 };
 
 const Calendar = ({
-    error, fetching, meetups, onMount
+    error, fetching, history, meetups, onMount
 }) => {
     useEffect(() => {
         onMount();
     }, [onMount]);
 
     return (
-        <Container maxWidth="lg" className="route-container">
-            <Title text="Search meetups"/>
-            <Searcher/>
-            {renderMeetupList(meetups, fetching, error)}
-        </Container>
+        <RouteContainer>
+            <PaperCard>
+                <Title>Search meetups</Title>
+                <Searcher onCreateMeetup={() => history.push('meetup')}/>
+                {renderMeetupList(meetups, fetching, error)}
+            </PaperCard>
+        </RouteContainer>
     );
 };
 
 Calendar.propTypes = {
+    history: PropTypes.shape({
+        push: PropTypes.func
+    }).isRequired,
     onMount: PropTypes.func.isRequired,
     error: PropTypes.bool,
     fetching: PropTypes.bool,

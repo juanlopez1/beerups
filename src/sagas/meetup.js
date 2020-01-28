@@ -4,15 +4,15 @@ import {MeetupService} from '../services';
 import {
     notifyFetchMeetupFailed,
     notifyFetchMeetupsFailed,
-    receivedMeetup,
-    receivedMeetups
+    receiveMeetup,
+    receiveMeetups
 } from '../actions/meetup';
 
 export function* fetchMeetup({id}) {
     try {
         const {username, password} = yield select(state => state.user);
         const meetup = yield call(MeetupService.fetchOne, id, {username, password});
-        yield put(receivedMeetup(meetup));
+        yield put(receiveMeetup(meetup));
     } catch (e) {
         yield put(notifyFetchMeetupFailed());
     }
@@ -23,7 +23,7 @@ export function* fetchMeetups() {
         const {username, password} = yield select(state => state.user);
         const {date} = yield select(state => state.meetup.searcher);
         const meetups = yield call(MeetupService.fetchMany, {username, password}, date);
-        yield put(receivedMeetups(meetups));
+        yield put(receiveMeetups(meetups));
     } catch (e) {
         yield put(notifyFetchMeetupsFailed());
     }

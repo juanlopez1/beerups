@@ -24,7 +24,24 @@ export const notifyFetchWeatherByCityFailed = () => ({
 
 export const WEATHER_FETCH_SUCCEEDED = 'WEATHER_FETCH_SUCCEEDED';
 
-export const receivedWeather = weather => ({
+export const receiveWeather = weather => ({
     type: WEATHER_FETCH_SUCCEEDED,
     weather
+});
+
+export const WEATHER_FETCH_FORECAST_REQUESTED = 'WEATHER_FETCH_FORECAST_REQUESTED';
+export const WEATHER_FETCH_FORECAST_SUCCEEDED = 'WEATHER_FETCH_FORECAST_SUCCEEDED';
+export const WEATHER_FETCH_FORECAST_FAILED = 'WEATHER_FETCH_FORECAST_FAILED';
+
+export const requestFetchForecast = () => ({
+    type: WEATHER_FETCH_FORECAST_REQUESTED
+});
+
+export const receiveForecast = forecast => ({
+    type: WEATHER_FETCH_FORECAST_SUCCEEDED,
+    forecast
+});
+
+export const notifyFetchForecastFailed = () => ({
+    type: WEATHER_FETCH_FORECAST_FAILED
 });

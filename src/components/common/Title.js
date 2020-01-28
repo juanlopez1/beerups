@@ -2,14 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Typography} from '@material-ui/core';
 
-const Title = ({text}) => (
+const Title = ({children}) => (
     <Typography component="h1" variant="h6" color="primary" gutterBottom>
-        {text}
+        {children}
     </Typography>
 );
 
 Title.propTypes = {
-    text: PropTypes.string.isRequired
+    children: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+    ]).isRequired
 };
 
 export default Title;

@@ -6,16 +6,16 @@ import {
 } from '@material-ui/core';
 import {filter, map, sortBy} from 'lodash';
 
-import countries from '../../../static/countries.json';
-import cities from '../../../static/cities.json';
-import {setGeolocationCity} from '../../../actions/geolocation';
-import {hideModal} from '../../../actions/modal';
+import countries from '../../static/countries.json';
+import cities from '../../static/cities.json';
+import {setGeolocationCity} from '../../actions/geolocation';
+import {hideModal} from '../../actions/modal';
 
 const Location = ({onSubmit}) => {
     const [selectedCountry, setCountry] = useState('');
     const [selectedCity, setCity] = useState('');
     const [filteredCities, setCities] = useState([]);
-    const handleChangeCountry = value => {
+    const handleChangeCountry = ({target: {value}}) => {
         setCountry(value);
         setCities(sortBy(
             filter(cities, city => city.country === value), city => city.name
@@ -29,7 +29,7 @@ const Location = ({onSubmit}) => {
                 <InputLabel>
                     Country
                 </InputLabel>
-                <Select value={selectedCountry} onChange={event => handleChangeCountry(event.target.value)}>
+                <Select value={selectedCountry} onChange={handleChangeCountry}>
                     {map(countries, country => (
                         <MenuItem key={country.value} value={country.value}>
                             {country.name}

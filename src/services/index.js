@@ -1,9 +1,9 @@
 import GeolocationService from './geolocation';
 import MeetupService from './meetup';
-import OrderService from './order';
+import UserService from './user';
 import WeatherService from './weather';
 
 export {GeolocationService};
 export {MeetupService};
-export {OrderService};
+export {UserService};
 export {WeatherService};
