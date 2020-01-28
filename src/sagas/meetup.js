@@ -1,12 +1,16 @@
 import {call, put, select} from 'redux-saga/effects';
-
 import {split} from 'lodash';
+
 import {MeetupService} from '../services';
 import {
+    notifyCheckInMeetupFailed,
+    notifyCheckInMeetupSucceeded,
     notifyFetchMeetupFailed,
     notifyFetchMeetupsFailed,
     notifySaveMeetupFailed,
     notifySaveMeetupSucceeded,
+    notifyParticipateInMeetupFailed,
+    notifyParticipateInMeetupSucceeded,
     receiveMeetup,
     receiveMeetups
 } from '../actions/meetup';
@@ -45,6 +49,33 @@ export function* fetchMeetups() {
         yield put(notifyFetchMeetupsFailed());
     }
 }
+
+export function* checkInMeetup({id}) {
+    try {
+        const details = yield select(state => state.user.details);
+        yield call(
+            MeetupService.checkIn, {username: details.username, role: details.role.value}, id
+        );
+        yield put(notifyCheckInMeetupSucceeded());
+        yield call(fetchMeetups);
+    } catch (e) {
+        yield put(notifyCheckInMeetupFailed());
+    }
+}
+
+export function* participateInMeetup({id}) {
+    try {
+        const details = yield select(state => state.user.details);
+        yield call(
+            MeetupService.participate, {username: details.username, role: details.role.value}, id
+        );
+        yield put(notifyParticipateInMeetupSucceeded());
+        yield call(fetchMeetups);
+    } catch (e) {
+        yield put(notifyParticipateInMeetupFailed());
+    }
+}
+
 
 export function* saveMeetup({id}) {
     try {

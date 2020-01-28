@@ -69,3 +69,37 @@ export const notifySaveMeetupSucceeded = () => ({
 export const notifySaveMeetupFailed = () => ({
     type: MEETUP_SAVE_FAILED
 });
+
+export const MEETUP_CHECK_IN_REQUESTED = 'MEETUP_CHECK_IN_REQUESTED';
+export const MEETUP_CHECK_IN_SUCCEEDED = 'MEETUP_CHECK_IN_SUCCEEDED';
+export const MEETUP_CHECK_IN_FAILED = 'MEETUP_CHECK_IN_FAILED';
+
+export const requestCheckInMeetup = id => ({
+    type: MEETUP_CHECK_IN_REQUESTED,
+    id
+});
+
+export const notifyCheckInMeetupSucceeded = () => ({
+    type: MEETUP_CHECK_IN_SUCCEEDED
+});
+
+export const notifyCheckInMeetupFailed = () => ({
+    type: MEETUP_CHECK_IN_FAILED
+});
+
+export const MEETUP_PARTICIPATE_REQUESTED = 'MEETUP_PARTICIPATE_REQUESTED';
+export const MEETUP_PARTICIPATE_SUCCEEDED = 'MEETUP_PARTICIPATE_SUCCEEDED';
+export const MEETUP_PARTICIPATE_FAILED = 'MEETUP_PARTICIPATE_FAILED';
+
+export const requestParticipateInMeetup = id => ({
+    type: MEETUP_PARTICIPATE_REQUESTED,
+    id
+});
+
+export const notifyParticipateInMeetupSucceeded = () => ({
+    type: MEETUP_PARTICIPATE_SUCCEEDED
+});
+
+export const notifyParticipateInMeetupFailed = () => ({
+    type: MEETUP_PARTICIPATE_FAILED
+});

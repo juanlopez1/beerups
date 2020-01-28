@@ -34,7 +34,7 @@ const Searcher = ({
             onClick={onSearch}
             disabled={!date}
         >
-                Search
+            Search
         </Button>
         {role === roles.ADMIN && (
             <Button
@@ -42,7 +42,7 @@ const Searcher = ({
                 color="secondary"
                 onClick={onCreateMeetup}
             >
-                    Create Meetup
+                Create Meetup
             </Button>
         )}
     </Grid>

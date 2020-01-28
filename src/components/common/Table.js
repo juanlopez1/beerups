@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    Fab, Paper, Table as TableComponent, TableBody, TableCell, TableContainer, TableHead, TableRow
+    Fab, Grid, Paper, Table as TableComponent, TableBody, TableCell, TableContainer, TableHead, TableRow
 } from '@material-ui/core';
-import {Visibility} from '@material-ui/icons';
-import {map} from 'lodash';
+import {Add, Check, Visibility} from '@material-ui/icons';
+import {includes, map} from 'lodash';
 
-const Table = ({meetups, onShowMeetup}) => (
+const Table = ({
+    meetups, onAddToMeetup, onCheckIn, onShowMeetup, userId
+}) => (
     <TableContainer component={Paper}>
         <TableComponent>
             <TableHead>
@@ -36,9 +38,21 @@ const Table = ({meetups, onShowMeetup}) => (
                             {meetup.time}
                         </TableCell>
                         <TableCell align="center">
-                            <Fab size="small" onClick={() => onShowMeetup(meetup._id)}>
-                                <Visibility/>
-                            </Fab>
+                            <Grid container justify="space-between">
+                                <Fab size="small" onClick={() => onShowMeetup(meetup._id)}>
+                                    <Visibility/>
+                                </Fab>
+                                {!includes(meetup.participants, userId) && userId !== meetup.creator && (
+                                    <Fab size="small" color="primary" onClick={() => onAddToMeetup(meetup._id)}>
+                                        <Add/>
+                                    </Fab>
+                                )}
+                                {includes(meetup.participants, userId) && !includes(meetup.checkedIn, userId) && (
+                                    <Fab size="small" color="secondary" onClick={() => onCheckIn(meetup._id)}>
+                                        <Check/>
+                                    </Fab>
+                                )}
+                            </Grid>
                         </TableCell>
                     </TableRow>
                 ))}
@@ -49,14 +63,20 @@ const Table = ({meetups, onShowMeetup}) => (
 
 Table.propTypes = {
     onShowMeetup: PropTypes.func.isRequired,
+    onAddToMeetup: PropTypes.func.isRequired,
+    onCheckIn: PropTypes.func.isRequired,
     meetups: PropTypes.arrayOf(PropTypes.shape({
         _id: PropTypes.string,
         title: PropTypes.string,
         description: PropTypes.string,
         place: PropTypes.string,
         date: PropTypes.string,
-        time: PropTypes.string
-    })).isRequired
+        time: PropTypes.string,
+        creator: PropTypes.string,
+        participants: PropTypes.arrayOf(PropTypes.string),
+        checkedIn: PropTypes.arrayOf(PropTypes.string)
+    })).isRequired,
+    userId: PropTypes.string.isRequired
 };
 
 export default Table;

@@ -12,8 +12,8 @@ const MeetupEditor = ({
     history, match, onMount, onSubmit
 }) => {
     const handleSubmit = () => {
-        onSubmit();
-        history.push('calendar');
+        onSubmit(match.params.id || undefined);
+        history.goBack();
     };
 
     useEffect(() => {
@@ -36,7 +36,8 @@ MeetupEditor.propTypes = {
     onMount: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired,
     history: PropTypes.shape({
-        push: PropTypes.func
+        push: PropTypes.func,
+        goBack: PropTypes.func
     }).isRequired,
     match: PropTypes.shape({
         params: PropTypes.shape({

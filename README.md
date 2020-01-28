@@ -1,6 +1,6 @@
 # BeerUps
 
-A React web-app. This app helps to organize meetups with beers.
+A React web-app. This app helps to organize meetups with beers. It's need [BeerUps-API](https://github.com/juanlopez1/beerups-api) for work.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

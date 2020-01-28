@@ -5,8 +5,10 @@ import {
     GEOLOCATION_SET_CITY
 } from '../actions/geolocation';
 import {
+    MEETUP_CHECK_IN_REQUESTED,
     MEETUP_FETCH_REQUESTED,
     MEETUPS_FETCH_REQUESTED,
+    MEETUP_PARTICIPATE_REQUESTED,
     MEETUP_SAVE_REQUESTED
 } from '../actions/meetup';
 import {
@@ -27,7 +29,9 @@ import {
 import {
     fetchMeetup,
     fetchMeetups,
-    saveMeetup
+    saveMeetup,
+    checkInMeetup,
+    participateInMeetup
 } from './meetup';
 import {
     fetchForecast,
@@ -45,6 +49,8 @@ function* root() {
     yield all([
         takeLatest(GEOLOCATION_GET_COORDS_REQUESTED, getCoords),
         takeLatest(GEOLOCATION_SET_CITY, setCity),
+        takeLatest(MEETUP_CHECK_IN_REQUESTED, checkInMeetup),
+        takeLatest(MEETUP_PARTICIPATE_REQUESTED, participateInMeetup),
         takeLatest(MEETUP_FETCH_REQUESTED, fetchMeetup),
         takeLatest(MEETUPS_FETCH_REQUESTED, fetchMeetups),
         takeLatest(MEETUP_SAVE_REQUESTED, saveMeetup),
