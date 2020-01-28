@@ -15,10 +15,12 @@ import {
     TextField,
     Typography
 } from '@material-ui/core';
-import {get, map} from 'lodash';
+import {map} from 'lodash';
 
 import Forecast from './Forecast';
-import {getForecast, isSaveButtonDisabled, userPropTypes} from '../../../util';
+import {
+    getBeerBoxes, getForecast, isSaveButtonDisabled, userPropTypes
+} from '../../../util';
 import {handleChangeAnswerMeetup} from '../../../actions/meetup';
 import {requestFetchUsers} from '../../../actions/user';
 
@@ -35,6 +37,10 @@ const Form = ({
     forecast, meetup, users, onChangeAnswer, onMount, onSubmit
 }) => {
     const handleChangeAnswer = ({target: {name, value}}) => onChangeAnswer({[name]: value});
+    const handleChangeBeer = ({target: {name, value}}) => {
+        onChangeAnswer({[name]: value});
+        onChangeAnswer({boxes: value !== '' ? getBeerBoxes(value) : 0});
+    };
 
     useEffect(() => {
         onMount();
@@ -145,8 +151,8 @@ const Form = ({
                     id="beers"
                     name="beers"
                     label="Beers"
-                    value={get(meetup, 'order.beers', '')}
-                    onChange={handleChangeAnswer}
+                    value={meetup.beers || ''}
+                    onChange={handleChangeBeer}
                     fullWidth
                     required
                     disabled={!meetup.time}
@@ -195,11 +201,9 @@ Form.propTypes = {
         date: PropTypes.string,
         time: PropTypes.string,
         participants: PropTypes.arrayOf(userPropTypes),
-        order: PropTypes.shape({
-            estimatedBeers: PropTypes.number,
-            beers: PropTypes.number,
-            boxes: PropTypes.number
-        })
+        beers: PropTypes.oneOfType([
+            PropTypes.string, PropTypes.number
+        ])
     }),
     users: PropTypes.arrayOf(userPropTypes)
 };

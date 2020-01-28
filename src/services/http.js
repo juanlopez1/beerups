@@ -14,6 +14,7 @@ class HttpService {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
+                'Content-Type': 'application/json',
                 ...credentials
             }
         });
@@ -25,6 +26,7 @@ class HttpService {
             method: 'PUT',
             body: JSON.stringify(data),
             headers: {
+                'Content-Type': 'application/json',
                 ...credentials
             }
         });

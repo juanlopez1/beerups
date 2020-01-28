@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import Meetups from './Meetups';
 import Weather from './Weather';
 import {RouteContainer, PaperCard} from '../common';
-import {requestFetchMeetups} from '../../actions/meetup';
+import {requestFetchMeetups, resetMeetupsReducer} from '../../actions/meetup';
 
 const Home = ({onMount}) => {
     useEffect(() => {
@@ -30,5 +30,10 @@ Home.propTypes = {
 
 export default connect(
     null,
-    {onMount: requestFetchMeetups}
+    dispatch => ({
+        onMount: () => {
+            dispatch(resetMeetupsReducer());
+            dispatch(requestFetchMeetups());
+        }
+    })
 )(Home);

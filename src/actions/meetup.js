@@ -40,10 +40,10 @@ export const handleChangeSearcherDate = date => ({
     date
 });
 
-export const MEETUPS_CLEAN_STORE = 'MEETUPS_CLEAN_STORE';
+export const MEETUPS_RESET_REDUCER = 'MEETUPS_RESET_REDUCER';
 
-export const cleanStoredMeetups = () => ({
-    type: MEETUPS_CLEAN_STORE
+export const resetMeetupsReducer = () => ({
+    type: MEETUPS_RESET_REDUCER
 });
 
 export const MEETUP_HANDLE_CHANGE_ANSWER_FORM = 'MEETUP_HANDLE_CHANGE_ANSWER_FORM';
@@ -51,4 +51,21 @@ export const MEETUP_HANDLE_CHANGE_ANSWER_FORM = 'MEETUP_HANDLE_CHANGE_ANSWER_FOR
 export const handleChangeAnswerMeetup = answer => ({
     type: MEETUP_HANDLE_CHANGE_ANSWER_FORM,
     answer
+});
+
+export const MEETUP_SAVE_REQUESTED = 'MEETUP_SAVE_REQUESTED';
+export const MEETUP_SAVE_SUCCEEDED = 'MEETUP_SAVE_SUCCEEDED';
+export const MEETUP_SAVE_FAILED = 'MEETUP_SAVE_FAILED';
+
+export const requestSaveMeetup = id => ({
+    type: MEETUP_SAVE_REQUESTED,
+    id
+});
+
+export const notifySaveMeetupSucceeded = () => ({
+    type: MEETUP_SAVE_SUCCEEDED
+});
+
+export const notifySaveMeetupFailed = () => ({
+    type: MEETUP_SAVE_FAILED
 });

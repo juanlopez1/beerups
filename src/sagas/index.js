@@ -6,7 +6,8 @@ import {
 } from '../actions/geolocation';
 import {
     MEETUP_FETCH_REQUESTED,
-    MEETUPS_FETCH_REQUESTED
+    MEETUPS_FETCH_REQUESTED,
+    MEETUP_SAVE_REQUESTED
 } from '../actions/meetup';
 import {
     WEATHER_FETCH_FORECAST_REQUESTED,
@@ -22,7 +23,8 @@ import {
 } from './geolocation';
 import {
     fetchMeetup,
-    fetchMeetups
+    fetchMeetups,
+    saveMeetup
 } from './meetup';
 import {
     fetchForecast,
@@ -39,6 +41,7 @@ function* root() {
         takeLatest(GEOLOCATION_SET_CITY, setCity),
         takeLatest(MEETUP_FETCH_REQUESTED, fetchMeetup),
         takeLatest(MEETUPS_FETCH_REQUESTED, fetchMeetups),
+        takeLatest(MEETUP_SAVE_REQUESTED, saveMeetup),
         takeLatest(USERS_FETCH_REQUESTED, fetchUsers),
         takeLatest(WEATHER_FETCH_BY_COORDS_REQUESTED, fetchWeatherByCoords),
         takeLatest(WEATHER_FETCH_BY_CITY_REQUESTED, fetchWeatherByCity),

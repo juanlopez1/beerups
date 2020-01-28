@@ -8,7 +8,7 @@ import Searcher from './Searcher';
 import {
     InfoMessage, PaperCard, RouteContainer, ServiceUnavailable, Table, Title
 } from '../common';
-import {cleanStoredMeetups} from '../../actions/meetup';
+import {resetMeetupsReducer} from '../../actions/meetup';
 
 const renderMeetupList = (meetups, fetching, error) => {
     if (fetching) {
@@ -60,5 +60,5 @@ export default connect(
         fetching: state.meetup.fetching,
         meetups: state.meetup.meetups
     }),
-    {onMount: cleanStoredMeetups}
+    {onMount: resetMeetupsReducer}
 )(Calendar);

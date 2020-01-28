@@ -6,12 +6,13 @@ import Form from './Form';
 import {
     PaperCard, RouteContainer, Title
 } from '../common';
-import {requestFetchMeetup} from '../../actions/meetup';
+import {requestFetchMeetup, requestSaveMeetup} from '../../actions/meetup';
 
 const MeetupEditor = ({
-    history, match, onMount
+    history, match, onMount, onSubmit
 }) => {
     const handleSubmit = () => {
+        onSubmit();
         history.push('calendar');
     };
 
@@ -33,6 +34,7 @@ const MeetupEditor = ({
 
 MeetupEditor.propTypes = {
     onMount: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
     history: PropTypes.shape({
         push: PropTypes.func
     }).isRequired,
@@ -45,5 +47,8 @@ MeetupEditor.propTypes = {
 
 export default connect(
     null,
-    {onMount: requestFetchMeetup}
+    {
+        onMount: requestFetchMeetup,
+        onSubmit: requestSaveMeetup
+    }
 )(MeetupEditor);

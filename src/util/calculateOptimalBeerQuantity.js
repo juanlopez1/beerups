@@ -1,6 +1,7 @@
-import {ceil, divide, multiply} from 'lodash';
+import {ceil, multiply} from 'lodash';
 
-const BOX_CAPACITY = 6;
+import getBeerBoxes from './getBeerBoxes';
+
 const COLD_TEMP = 20;
 const COLD_TEMP_BEERS_PER_PERSON = 0.75;
 const HOT_TEMP = 24;
@@ -16,7 +17,8 @@ const calculateOptimalBeerQuantity = (people, temperature) => {
         beers = ceil(multiply(people, HOT_TEMP_BEERS_PER_PERSON));
     }
     return {
-        beers, boxes: ceil(divide(beers, BOX_CAPACITY))
+        beers,
+        boxes: getBeerBoxes(beers)
     };
 };
 
